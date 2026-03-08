@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+
+body{
+    font-family: "Prompt", sans-serif;
+    background:#fff0f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+}
+
+input{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    width:200px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff8fab;
+    color:white;
+    cursor:pointer;
+}
+
+.paper{
+    display:none;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    width:350px;
+    animation:fade 1s;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    color:#ff6b81;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="login">
+
+<h2>🔒 ใส่รหัสก่อนนะ</h2>
+<input type="password" id="pass" placeholder="Password">
+<br><br>
+<button onclick="check()">เปิดดู</button>
+
+</div>
+
+
+<div class="paper" id="love">
+
+<h1>ถึงคนพิเศษของผม 💖</h1>
+
+<p>
+ขอบคุณที่เข้ามาในชีวิตผม  
+ทำให้ทุกวันธรรมดา  
+กลายเป็นวันที่พิเศษเสมอ
+</p>
+
+<p>
+ผมอาจไม่ได้เก่งเรื่องพูดหวานๆ  
+แต่ผมอยากให้คุณรู้ว่า
+</p>
+
+<h3>
+ผมรักคุณมากนะ ❤️
+</h3>
+
+<p>
+อยู่ข้างกันไปนานๆนะ
+</p>
+
+</div>
+
+
+<script>
+
+function check(){
+
+let password="01022026";
+
+let input=document.getElementById("pass").value;
+
+if(input===password){
+
+document.getElementById("login").style.display="none";
+document.getElementById("love").style.display="block";
+
+}else{
+
+alert("รหัสไม่ถูกนะ 😝");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
