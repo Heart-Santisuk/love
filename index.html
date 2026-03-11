@@ -2,56 +2,61 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>For You 💖</title>
 
 <style>
 
 body{
-    font-family: "Prompt", sans-serif;
-    background:#fff0f5;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.container{
-    text-align:center;
-}
-
-input{
-    padding:10px;
-    border-radius:10px;
-    border:1px solid #ddd;
-    width:200px;
-}
-
-button{
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    background:#ff8fab;
-    color:white;
-    cursor:pointer;
-}
-
-.paper{
-    display:none;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-    width:350px;
-    animation:fade 1s;
-}
-
-@keyframes fade{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:sans-serif;
+background:#fff0f6;
+overflow:hidden;
 }
 
 h1{
-    color:#ff6b81;
+color:#ff6fa5;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ff9fc5;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff7eb3;
+color:white;
+cursor:pointer;
+}
+
+#letter{
+display:none;
+text-align:center;
+max-width:500px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.sticker{
+position:absolute;
+font-size:30px;
+animation:float 6s infinite linear;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-100vh);}
 }
 
 </style>
@@ -59,60 +64,83 @@ h1{
 
 <body>
 
-<div class="container" id="login">
+<h1>🔒 ใส่รหัสก่อนนะ</h1>
 
-<h2>🔒 ใส่รหัสก่อนนะ</h2>
-<input type="password" id="pass" placeholder="Password">
+<input type="password" id="pass">
 <br><br>
-<button onclick="check()">เปิดดู</button>
+<button onclick="check()">เข้าเว็บ</button>
 
-</div>
-
-
-<div class="paper" id="love">
-
-<h1>ถึงคนพิเศษของผม 💖</h1>
+<div id="letter">
+<h2>ถึงคนเก่งของผม 💖</h2>
 
 <p>
-ขอบคุณที่เข้ามาในชีวิตผม  
-ทำให้ทุกวันธรรมดา  
-กลายเป็นวันที่พิเศษเสมอ
+ผมอยากให้รู้ไว้นะว่า  
+ไม่ว่าที่รักจะเหนื่อยแค่ไหน  
+ผมจะอยู่ข้างๆเสมอ 🌸
 </p>
 
 <p>
-ผมอาจไม่ได้เก่งเรื่องพูดหวานๆ  
-แต่ผมอยากให้คุณรู้ว่า
+ที่รักเก่งมากแล้วจริงๆ  
+อย่าลืมภูมิใจในตัวเองนะ
 </p>
 
-<h3>
-ผมรักคุณมากนะ ❤️
-</h3>
+<p>
+พักบ้าง ยิ้มบ้าง  
+แล้วค่อยเดินต่อไปนะคะคนเก่งของผม ✨
+</p>
 
 <p>
-อยู่ข้างกันไปนานๆนะ
+รักที่รักเสมอ 💕
 </p>
 
 </div>
-
 
 <script>
 
+const password = "iloveyou"
+
 function check(){
 
-let password="01022026";
+let input = document.getElementById("pass").value
 
-let input=document.getElementById("pass").value;
+if(input === password){
 
-if(input===password){
+document.querySelector("h1").style.display="none"
+document.querySelector("input").style.display="none"
+document.querySelector("button").style.display="none"
 
-document.getElementById("login").style.display="none";
-document.getElementById("love").style.display="block";
+document.getElementById("letter").style.display="block"
+
+createStickers()
 
 }else{
 
-alert("รหัสไม่ถูกนะ 😝");
+alert("รหัสไม่ถูกนะ")
 
 }
+
+}
+
+function createStickers(){
+
+const stickers = ["🐻","🐰","🌸","💖","✨","🧸","🌷","💗","🌼","⭐"]
+
+setInterval(()=>{
+
+let s = document.createElement("div")
+s.className="sticker"
+
+s.innerHTML = stickers[Math.floor(Math.random()*stickers.length)]
+
+s.style.left = Math.random()*100 + "vw"
+
+s.style.fontSize = (20 + Math.random()*30) + "px"
+
+document.body.appendChild(s)
+
+setTimeout(()=>{s.remove()},6000)
+
+},400)
 
 }
 
