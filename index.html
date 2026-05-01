@@ -1,175 +1,205 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>For You ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Months with Bibie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&family=Prompt:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bibie-pink: #ffdae0;
+            --heart-red: #ff5e78;
+            --text-dark: #4a4a4a;
+        }
 
-<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(180deg, #fff5f6 0%, #ffdae0 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden; /* กันจอมือถือเลื่อนซ้ายขวา */
+        }
 
-body{
-margin:0;
-font-family:"Prompt",sans-serif;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-overflow:hidden;
-}
+        /* ปรับ Card ให้ Responsive */
+        .main-card {
+            width: 85%; /* ใช้เป็นเปอร์เซ็นต์เพื่อให้ยืดหดตามจอมือถือ */
+            max-width: 400px; /* ขนาดใหญ่สุดเมื่อดูในคอม */
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 150, 170, 0.2);
+            text-align: center;
+            border: 2px solid #fff;
+            box-sizing: border-box; /* ป้องกัน Padding ดันขนาด Card */
+        }
 
-/* floating items */
+        h1 {
+            font-family: 'Mali', cursive;
+            color: var(--heart-red);
+            font-size: 1.8rem; /* ปรับขนาดตัวอักษรให้พอดีมือถือ */
+            margin-bottom: 5px;
+        }
 
-.float{
-position:absolute;
-font-size:22px;
-animation:float 6s linear infinite;
-}
+        .bibie-tag {
+            background: var(--bibie-pink);
+            color: #d63384;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
 
-@keyframes float{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
-}
+        .counter-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
 
-/* login box */
+        .counter-item {
+            background: #fff0f3;
+            padding: 8px;
+            border-radius: 12px;
+            flex: 1; /* ให้กล่องเท่ากันในมือถือ */
+        }
 
-.login-box{
-background:rgba(255,255,255,0.2);
-backdrop-filter:blur(10px);
-padding:40px;
-border-radius:20px;
-text-align:center;
-color:white;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
+        .counter-num {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--heart-red);
+        }
 
-input{
-padding:10px;
-border:none;
-border-radius:10px;
-margin-top:10px;
-}
+        /* ปรับแต่งรูปภาพให้พอดีกรอบ */
+        .photo-area {
+            margin: 20px 0;
+            width: 100%;
+        }
 
-button{
-margin-top:15px;
-padding:10px 20px;
-border:none;
-border-radius:20px;
-background:#ff6b81;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
-}
+        .main-img {
+            width: 100%; /* รูปจะกว้างเท่ากับ Card เสมอ */
+            height: auto; /* รักษาอัตราส่วนรูปภาพไม่ให้เบี้ยว */
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-button:hover{
-transform:scale(1.1);
-}
+        .message-text {
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
 
-/* letter */
+        .btn-surprise {
+            background: var(--heart-red);
+            color: white;
+            border: none;
+            padding: 14px 0;
+            width: 100%; /* ปุ่มกว้างเต็ม Card กดง่ายในมือถือ */
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 94, 120, 0.3);
+        }
 
-.letter{
-display:none;
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,0.2);
-width:380px;
-text-align:center;
-animation:open 1s ease;
-}
+        #hidden-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff9fa;
+            border-radius: 15px;
+            border: 2px dashed var(--bibie-pink);
+        }
 
-@keyframes open{
-from{transform:scale(0.5);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-h1{
-color:#ff6b81;
-}
-
-p{
-line-height:1.6;
-}
-
-</style>
+        /* หัวใจลอย */
+        .heart-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="login" class="login-box">
-<h2>🔒 ใส่รหัสก่อนนะ</h2>
-<input type="password" id="pass" placeholder="Password">
-<br>
-<button onclick="check()">เปิดจดหมาย</button>
-</div>
+    <div class="main-card">
+        <div class="bibie-tag">Happy 3 Months Together</div>
+        <h1>Happy Anniversary!</h1>
+        
+        <div class="counter-box">
+            <div class="counter-item">
+                <span class="counter-num">3</span>
+                <small>เดือน</small>
+            </div>
+            <div class="counter-item">
+                <span class="counter-num">90+</span>
+                <small>วัน</small>
+            </div>
+        </div>
 
-<div id="letter" class="letter">
+        <div class="photo-area">
+            <!-- เชื่อมที่อยู่ไฟล์ตามในเครื่องของคุณ -->
+            <img src="image/Pie.png" alt="บิบี๋ของเค้า" class="main-img">
+        </div>
 
-<h1>ถึงที่รักของผม 💌</h1>
+        <div class="message-text">
+            ถึง <strong>"บิบี๋"</strong> ของเค้า...<br>
+            สามเดือนแล้วนะ ขอบคุณที่ดูแลกัน<br>
+            รักบิบี๋เพิ่มขึ้นทุกวันเลยครับ
+        </div>
 
-<p>
-ช่วงนี้ผมคิดถึงที่รักมากเลยนะ  
-ไม่รู้ว่าตอนนี้ที่รักกำลังทำอะไรอยู่
-</p>
+        <button class="btn-surprise" onclick="showLove()">กดสิ...บิบี๋ ❤️</button>
 
-<p>
-ผมอยากบอกที่รักว่า  
-ถึงเราจะไม่ได้อยู่ด้วยกันตลอดเวลา  
-แต่ที่รักอยู่ในความคิดของผมเสมอ
-</p>
+        <div id="hidden-message">
+            <p style="font-family: 'Mali'; font-size: 1.1rem; color: #ff4763;">
+                "สัญญามีให้แค่บิบี๋คนเดียว <br>
+                อยู่ให้เค้ารักไปนานๆ นะครับ!"
+            </p>
+            <p>รักที่สุดเลย 💗</p>
+        </div>
+    </div>
 
-<p>
-ผมคิดถึงรอยยิ้มของที่รัก  
-คิดถึงเสียงหัวเราะของที่รัก  
-และคิดถึงทุกช่วงเวลาที่เราอยู่ด้วยกัน
-</p>
+    <script>
+        function showLove() {
+            document.getElementById('hidden-message').style.display = 'block';
+            document.querySelector('.btn-surprise').style.display = 'none';
 
-<h3>ผมคิดถึงที่รักมากนะ ❤️</h3>
+            for(let i=0; i<30; i++) {
+                createHeart();
+            }
+        }
 
-<p>จากผมคนเดิมของที่รัก</p>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = ['❤️','💖','💗'][Math.floor(Math.random()*3)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            document.body.appendChild(heart);
 
-</div>
+            const duration = Math.random() * 2000 + 2000;
+            heart.animate([
+                { transform: `translateY(0)` },
+                { transform: `translateY(-110vh)` }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
 
-<script>
-
-function check(){
-
-let password="1234";
-let input=document.getElementById("pass").value;
-
-if(input===password){
-
-document.getElementById("login").style.display="none";
-document.getElementById("letter").style.display="block";
-
-}else{
-
-alert("รหัสไม่ถูกนะ 😝");
-
-}
-
-}
-
-/* floating hearts + flowers */
-
-const items=["❤","🌸","🌷","🌹","💐","🌼"];
-
-for(let i=0;i<40;i++){
-
-let el=document.createElement("div");
-el.className="float";
-
-el.innerHTML=items[Math.floor(Math.random()*items.length)];
-
-el.style.left=Math.random()*100+"vw";
-el.style.animationDuration=4+Math.random()*6+"s";
-el.style.fontSize=(18+Math.random()*20)+"px";
-
-document.body.appendChild(el);
-
-}
-
-</script>
-
+            setTimeout(() => heart.remove(), duration);
+        }
+    </script>
 </body>
 </html>
